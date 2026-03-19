@@ -1,0 +1,28 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+
+# Virtual environments
+.venv/
+
+# Model weights (hosted on Hugging Face)
+*.pt
+
+# Benchmark data
+2022sample/
+2023sample/
+
+# Extracted features
+features/
+*.h5
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db

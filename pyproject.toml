@@ -1,0 +1,19 @@
+[project]
+name = "coral-models"
+version = "0.1.0"
+description = "Standalone inference for coral re-identification models"
+requires-python = ">=3.10"
+license = "GPL-3.0-or-later"
+dependencies = [
+    "torch>=2.0.0",
+    "torchvision>=0.15.0",
+    "timm>=1.0.0",
+    "h5py>=3.9.0",
+    "numpy>=1.24.0",
+    "pillow>=10.0.0",
+    "pyyaml>=6.0",
+    "tqdm>=4.65.0",
+]
+
+[tool.uv]
+package = false

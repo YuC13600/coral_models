@@ -1,0 +1,75 @@
+# DINOv3 ViT-S+ Triplet 調參 Tune-02
+# 問題：同 Tune-01，Phase 2 早收斂 + Phase 3 高基線，且尚未嘗試深化解凍
+# 策略：Tune-01 基礎上新增 Phase 4（6 blocks，LR=1e-5，15ep）
+#       測試在 Phase 2/3 改善後，Phase 4 是否能進一步提升
+# 基準（E1-13）：DINOv3 ViT-S+ Triplet 74.0%
+name: dinov3_vitsplus_tune_02_p2lr5_4ph
+seed: 42
+device: cuda
+output_dir: outputs
+
+backbone:
+  name: timm
+  variant: vit_small_plus_patch16_dinov3
+  pretrained: true
+  freeze: true
+  output_dim: 384
+  img_size: 512
+
+head:
+  name: mlp
+  input_dim: 384
+  hidden_dim: 512
+  output_dim: 768
+  dropout: 0.3
+  use_batchnorm: true
+
+loss:
+  name: triplet
+  margin: 0.3
+  mining_strategy: hard
+
+data:
+  root_dirs:
+  - /home/yuc/code/data/coral
+  use_whole_image: true
+  same_area_negatives: false
+  image_size: 512
+  train_ratio: 0.7
+  val_ratio: 0.15
+  test_ratio: 0.15
+  num_workers: 4
+
+training:
+  batch_size: 16
+  accumulation_steps: 8
+  learning_rate: 0.0003
+  weight_decay: 0.0001
+  early_stopping_patience: 6
+  early_stopping_delta: 0.0005
+  scheduler_patience: 3
+  scheduler_factor: 0.5
+  min_lr: 1.0e-06
+  gradient_clip_norm: 1.0
+
+phases:
+- name: 'Phase 1: Head Only'
+  epochs: 20
+  learning_rate: 3.0e-04
+  unfreeze_backbone: false
+  unfreeze_layers: 0
+- name: 'Phase 2: Head + Last 2 Blocks (LR=5e-5, 20ep)'
+  epochs: 20
+  learning_rate: 5.0e-05
+  unfreeze_backbone: true
+  unfreeze_layers: 2
+- name: 'Phase 3: Head + Last 4 Blocks (LR=1.5e-5)'
+  epochs: 15
+  learning_rate: 1.5e-05
+  unfreeze_backbone: true
+  unfreeze_layers: 4
+- name: 'Phase 4: Head + Last 6 Blocks (LR=1e-5)'
+  epochs: 15
+  learning_rate: 1.0e-05
+  unfreeze_backbone: true
+  unfreeze_layers: 6
