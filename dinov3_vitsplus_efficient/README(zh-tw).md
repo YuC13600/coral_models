@@ -71,15 +71,17 @@ Phase 2 學習率從預設的 8e-5 降至 5e-5，避免 early stopping 過早觸
 | Top-1 | 86.6% | 81.1% | -5.5% |
 | 參數量 | ~86.6M | ~22M | **-75%** |
 | 訓練時間 | ~7.2h | ~2.0h | **-72%** |
-| 模型檔案大小 | 339 MB | 112 MB | **-67%** |
+| 模型大小 (FP32) | 339 MB | 112 MB | **-67%** |
+| 模型大小 (FP16) | 170 MB | 56 MB | **-67%** |
 | 推論 tokens | 1369 (patch14) | 1024 (patch16) | -25% |
 
 ## 檔案說明
 
 | 檔案 | 說明 |
 |------|------|
-| `best_model_20260306_233824.pt` | 最佳 checkpoint（訓練期間最低驗證損失） |
-| `final_model_20260306_233824.pt` | 最終 checkpoint（最後一個 epoch） |
+| `best_model_20260306_233824.pt` | 最佳 checkpoint，FP32（112 MB） |
+| `best_model_20260306_233824_fp16.pt` | 最佳 checkpoint，FP16（56 MB） |
+| `final_model_20260306_233824.pt` | 最終 checkpoint（最後一個 epoch），FP32 |
 | `dinov3_vitsplus_tune_02_p2lr5_4ph.yaml` | 完整訓練配置 |
 
 ## 使用方式

@@ -71,8 +71,9 @@ Cross-year matching: 2022 (reference) vs 2023 (query), areas 37-40.
 
 | File | Description |
 |------|-------------|
-| `best_model_20260308_110634.pt` | Best checkpoint (lowest val loss during training) |
-| `final_model_20260308_110634.pt` | Final checkpoint (last epoch) |
+| `best_model_20260308_110634.pt` | Best checkpoint, FP32 (339 MB) |
+| `best_model_20260308_110634_fp16.pt` | Best checkpoint, FP16 (170 MB) |
+| `final_model_20260308_110634.pt` | Final checkpoint (last epoch), FP32 |
 | `e3_01b_same_area_neg_075.yaml` | Full training config |
 
 ## Usage

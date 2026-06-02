@@ -71,15 +71,17 @@ Cross-year matching: 2022 (reference) vs 2023 (query), areas 37-40.
 | Top-1 | 86.6% | 81.1% | -5.5% |
 | Parameters | ~86.6M | ~22M | **-75%** |
 | Training time | ~7.2h | ~2.0h | **-72%** |
-| Model file size | 339 MB | 112 MB | **-67%** |
+| Model size (FP32) | 339 MB | 112 MB | **-67%** |
+| Model size (FP16) | 170 MB | 56 MB | **-67%** |
 | Inference tokens | 1369 (patch14) | 1024 (patch16) | -25% |
 
 ## Files
 
 | File | Description |
 |------|-------------|
-| `best_model_20260306_233824.pt` | Best checkpoint (lowest val loss during training) |
-| `final_model_20260306_233824.pt` | Final checkpoint (last epoch) |
+| `best_model_20260306_233824.pt` | Best checkpoint, FP32 (112 MB) |
+| `best_model_20260306_233824_fp16.pt` | Best checkpoint, FP16 (56 MB) |
+| `final_model_20260306_233824.pt` | Final checkpoint (last epoch), FP32 |
 | `dinov3_vitsplus_tune_02_p2lr5_4ph.yaml` | Full training config |
 
 ## Usage

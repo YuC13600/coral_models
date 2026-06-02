@@ -42,7 +42,8 @@ This repository contains standalone inference scripts and benchmark data. Model 
 |--------|--------------|----------------|------------|
 | Top-1 | 86.6% | 81.1% | -5.5% |
 | Parameters | ~86.6M | ~22M | **-75%** |
-| Model size | 339 MB | 112 MB | **-67%** |
+| Model size (FP32) | 339 MB | 112 MB | **-67%** |
+| Model size (FP16) | 170 MB | 56 MB | **-67%** |
 | Training time | ~7.2h | ~2.0h | **-72%** |
 | Inference tokens | 1369 (patch14) | 1024 (patch16) | -25% |
 
